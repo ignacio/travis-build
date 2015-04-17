@@ -48,8 +48,8 @@ module Travis
             sh.cmd %Q{curl -s -L --retry 3 '#{lua_url}' } \
                    '| tar -C ~/lua -x -z --strip-components=1 -f -'
             sh.cmd 'cd ~/lua && make linux && make INSTALL_TOP=~/lua install'
-            ln -s ~/lua/bin/lua $HOME/.lua/lua;
-            ln -s ~/lua/bin/luac $HOME/.lua/luac;
+            sh.cmd 'ln -s ~/lua/bin/lua $HOME/.lua/lua'
+            sh.cmd 'ln -s ~/lua/bin/luac $HOME/.lua/luac;'
             sh.cmd 'export PATH="${PATH}:${HOME}/haxe"'
           end
         end
